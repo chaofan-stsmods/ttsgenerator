@@ -50,12 +50,14 @@ public class TtsGenerator implements PostRenderSubscriber {
         // Load card definition
         // See TabletopCardDef.java for whole definition
         Gson gson = new Gson();
-        String cards = Gdx.files.internal("ttsgenerator/cards/ironclad.json").readString();
+        String cards = Gdx.files.internal("ttsgenerator/cards/bladegunner.json").readString();
         Type cardDefMapType = (new TypeToken<Map<String, TabletopCardDef>>() {}).getType();
         cardMap = gson.fromJson(cards, cardDefMapType);
 
         // Generate deck
-        generateCardSet(sb, "ironcladbasic");
+        generateCardSet(sb, "bladegunnerbasic");
+        generateCardSet(sb, "bladegunnerreward");
+        generateCardSet(sb, "bladegunnergold");
 
         System.out.println("Generator Done");
 
