@@ -279,8 +279,8 @@
     "type": "POWER"
   },
   "bladegunner:card.Eject": {
-    "description": "Remove all [Ammo] on your *Gun. NL Put 2 [Ammo] on your board.",
-    "upgradeDescription": "Remove all [Ammo] on your *Gun. NL Put 3 [Ammo] on your board."
+    "description": "Remove all [Ammo] on your *Gun. NL Put 2 [Ammo] on your board. NL *Exhaust.",
+    "upgradeDescription": "Remove all [Ammo] on your *Gun. NL Put 3 [Ammo] on your board. NL *Exhaust."
   },
   "bladegunner:card.ShellDefense": {
     "description": "When you use [Ammo] on your board, you may gain 1 [Def] instead of 1 [E].",

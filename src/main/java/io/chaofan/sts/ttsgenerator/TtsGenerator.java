@@ -55,6 +55,7 @@ public class TtsGenerator implements PostRenderSubscriber {
         cardMap = gson.fromJson(cards, cardDefMapType);
 
         // Generate deck
+        generateCardSet(sb, "bladegunnervictim");
         generateCardSet(sb, "bladegunnerbasic");
         generateCardSet(sb, "bladegunnerreward");
         generateCardSet(sb, "bladegunnergold");
