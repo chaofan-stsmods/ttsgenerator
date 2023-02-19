@@ -328,6 +328,23 @@
     "cost": 3,
     "upgradeCost": 2
   },
+  "bladegunner:card.DaggerInBullets": {
+    "description": "4 [Atk] NL Costs 1 less [E] for each [Ammo] on your board.",
+    "upgradeDescription": "6 [Atk] NL Costs 1 less [E] for each [Ammo] on your board."
+  },
+  "bladegunner:card.Gust": {
+    "description": "Place a cube on this card. NL When an enemy loses  [Vulnerable] or applies  [Weak], you may remove a cube to prevent it.",
+    "upgradeDescription": "Place 2 cubes on this card. NL When an enemy loses  [Vulnerable] or applies  [Weak], you may remove a cube to prevent it.",
+    "descriptionScale": 0.86,
+    "descriptionYOffset": 40,
+    "slots": [
+      { "x": 0, "y": -10 }
+    ],
+    "upgradeSlots": [
+      { "x": -80, "y": -10 },
+      { "x": 80, "y": -10 }
+    ]
+  },
   "ttsgen:GoldenTicket": {
     "description": "Golden Ticket can't be added to your deck. NL When you reveal Golden Ticket, reveal a card from your rare deck.",
     "descriptionScale": 0.95
