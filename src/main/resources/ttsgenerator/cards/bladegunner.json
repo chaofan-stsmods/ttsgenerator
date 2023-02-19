@@ -182,7 +182,8 @@
       { "x": 0, "y": 0 },
       { "x": 130, "y": 0 }
     ],
-    "type": "POWER"
+    "type": "POWER",
+    "image": "bladegunner\\images\\cards\\portrait\\Camouflage_power.png"
   },
   "bladegunner:card.InfiniteAmmo": {
     "description": "*Shooting doesn't use [Ammo] this turn."
@@ -204,7 +205,8 @@
       { "x": 130, "y": 10 }
     ],
     "type": "POWER",
-    "rarity": "RARE"
+    "rarity": "RARE",
+    "image": "bladegunner\\images\\cards\\portrait\\FlashBang_power.png"
   },
   "bladegunner:card.Supplement": {
     "description": "*Reload. NL If no [Ammo] on your *Gun, draw 2 cards, [E] [E].",
@@ -276,7 +278,8 @@
   "bladegunner:card.BulletsInSand": {
     "description": "Put 2X [Ammo] on this card. NL *Start *of *turn: Move 2 [Ammo] to your board.",
     "upgradeDescription": "Put 2X+2 [Ammo] on this card. NL *Start *of *turn: Move 2 [Ammo] to your board.",
-    "type": "POWER"
+    "type": "POWER",
+    "image": "bladegunner\\images\\cards\\portrait\\BulletsInSand_power.png"
   },
   "bladegunner:card.Eject": {
     "description": "Remove all [Ammo] on your *Gun. NL Put 2 [Ammo] on your board. NL *Exhaust.",
