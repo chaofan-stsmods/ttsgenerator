@@ -14,4 +14,5 @@ public class TabletopCardDef {
     public int upgradeCost = Integer.MIN_VALUE;
     public String type;
     public String rarity;
+    public String image;
 }

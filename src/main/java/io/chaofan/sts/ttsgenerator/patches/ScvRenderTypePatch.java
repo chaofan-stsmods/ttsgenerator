@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import io.chaofan.sts.ttsgenerator.TtsGenerator;
 import io.chaofan.sts.ttsgenerator.model.TabletopCardDef;
 
-@SpirePatch(clz = SingleCardViewPopup.class, method = "renderFrame")
+@SpirePatch(clz = SingleCardViewPopup.class, method = "render")
 public class ScvRenderTypePatch {
     @SpirePrefixPatch
     public static void Prefix(SingleCardViewPopup instance, SpriteBatch sb, AbstractCard ___card) {
