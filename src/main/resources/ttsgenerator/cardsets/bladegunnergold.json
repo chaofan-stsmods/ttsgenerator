@@ -15,6 +15,7 @@
     "bladegunner:card.BurningLand",
     "bladegunner:card.RocketLauncherCard",
     "bladegunner:card.HotShells",
-    "bladegunner:card.MechaForm"
+    "bladegunner:card.MechaForm",
+    "bladegunner:card.CombinationAttack"
   ]
 }
