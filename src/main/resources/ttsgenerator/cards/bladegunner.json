@@ -170,7 +170,7 @@
   },
   "bladegunner:card.Camouflage": {
     "description": "For 2 turns, you can't lose more than 1 HP per turn, NL nor play Attacks whose NL [Atk] + [Flex] < 4.",
-    "upgradeDescription": "For 2 turns, you can't lose more than 1 HP per turn, NL nor play Attacks whose NL [Atk] + [Flex] < 4.",
+    "upgradeDescription": "For 3 turns, you can't lose more than 1 HP per turn, NL nor play Attacks whose NL [Atk] + [Flex] < 4.",
     "descriptionScale": 0.9,
     "descriptionYOffset": 50,
     "slots": [
@@ -209,8 +209,8 @@
     "image": "bladegunner\\images\\cards\\portrait\\FlashBang_power.png"
   },
   "bladegunner:card.Supplement": {
-    "description": "*Reload. NL If no [Ammo] on active *Gun, draw 2 cards, [E] [E].",
-    "upgradeDescription": "*Reload. NL If no [Ammo] on active *Gun, draw 3 cards, [E] [E] [E]."
+    "description": "If no [Ammo] on active *Gun, draw 2 cards, [E] [E]. NL *Reload.",
+    "upgradeDescription": "If no [Ammo] on active *Gun, draw 3 cards, [E] [E] [E]. NL *Reload."
   },
   "bladegunner:card.Pursue": {
     "description": "The first Attack you play each turn costs 1 less [E]."
