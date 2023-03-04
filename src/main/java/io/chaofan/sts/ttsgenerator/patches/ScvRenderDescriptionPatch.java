@@ -94,14 +94,17 @@ public class ScvRenderDescriptionPatch {
         String[] tokens = description.split("(?=[ .,])");
         List<List<String>> lines = new ArrayList<>();
         List<Float> lineWidths = new ArrayList<>();
+        List<Float> lineHeights = new ArrayList<>();
         List<String> currentLine = new ArrayList<>();
         float currentWidth = 0;
+        float currentHeight = 1.53F * font.getCapHeight();
         for (String token : tokens) {
             String trimmedToken = token.startsWith(" ") ? token.substring(1) : token;
             float tokenWidth;
             if (trimmedToken.startsWith("[") && trimmedToken.endsWith("]")) {
                 if (trimmedToken.startsWith("[Dice")) {
                     tokenWidth = iconWidth * 1.5f * drawScale;
+                    currentHeight *= 1.15f;
                 } else {
                     tokenWidth = iconWidth * drawScale;
                 }
@@ -134,8 +137,10 @@ public class ScvRenderDescriptionPatch {
 
                 lines.add(currentLine);
                 lineWidths.add(currentWidth);
+                lineHeights.add(currentHeight);
 
                 currentWidth = 0;
+                currentHeight = 1.53F * font.getCapHeight();
                 currentLine = new ArrayList<>();
             }
 
@@ -148,23 +153,31 @@ public class ScvRenderDescriptionPatch {
         if (currentWidth > 0) {
             lines.add(currentLine);
             lineWidths.add(currentWidth);
+            lineHeights.add(currentHeight);
         }
 
         float current_x = (float)Settings.WIDTH / 2.0F;
         float current_y = (float)Settings.HEIGHT / 2.0F - 300.0F * Settings.scale;
         float draw_y = current_y + 100.0F * Settings.scale;
-        draw_y += (float)lines.size() * font.getCapHeight() * 0.775F - font.getCapHeight() * 0.375F;
+        draw_y += lineHeights.stream().reduce(Float::sum).orElse(0f) / 2 +
+                (float)lines.size() * font.getCapHeight() * 0.01F - font.getCapHeight() * 0.375F;
         draw_y += cardDef.descriptionYOffset * Settings.scale;
 
+        currentHeight = 0;
         for (int i = 0; i < lines.size(); i++) {
             currentLine = lines.get(i);
             currentWidth = lineWidths.get(i);
+            currentHeight += lineHeights.get(i);
             float start_x = current_x - currentWidth / 2;
 
             for (String token : currentLine) {
                 String trimmedToken = token.startsWith(" ") ? token.substring(1) : token;
                 if (trimmedToken.startsWith("[") && trimmedToken.endsWith("]")) {
-                    renderIcon(sb, card, trimmedToken.substring(1, trimmedToken.length() - 1), start_x, (i + 0.5f) * 1.53F * -font.getCapHeight() + draw_y + -12.0F, iconWidth / Settings.scale, drawScale * Settings.scale);
+                    renderIcon(sb, card, trimmedToken.substring(1, trimmedToken.length() - 1),
+                            start_x,
+                            (lineHeights.get(i) / 2f - currentHeight) + draw_y - 12.0F,
+                            iconWidth / Settings.scale,
+                            drawScale * Settings.scale);
                     if (trimmedToken.startsWith("[Dice")) {
                         start_x += iconWidth * 1.5f * drawScale;
                     } else {
@@ -183,7 +196,7 @@ public class ScvRenderDescriptionPatch {
                     gl.setText(font, token);
                     FontHelper.renderRotatedText(sb, font, token, current_x, current_y,
                             start_x - current_x + gl.width / 2.0F,
-                            i * 1.53F * -font.getCapHeight() + draw_y - current_y + -12.0F,
+                            ((1.53F * font.getCapHeight() + lineHeights.get(i)) / 2f - currentHeight) + draw_y - current_y - 12.0F,
                             0.0F,
                             true,
                             gold ? Settings.GOLD_COLOR : Settings.CREAM_COLOR);
@@ -287,10 +300,10 @@ public class ScvRenderDescriptionPatch {
                     }
 
                     gl.setText(font, token);
-                    FontHelper.renderRotatedText(sb, font, token, current_x, current_y, start_x - current_x + gl.width / 2.0F, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y + -12.0F, 0.0F, true, Settings.GOLD_COLOR);
+                    FontHelper.renderRotatedText(sb, font, token, current_x, current_y, start_x - current_x + gl.width / 2.0F, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y - 12.0F, 0.0F, true, Settings.GOLD_COLOR);
                     start_x = (float) Math.round(start_x + gl.width);
                     gl.setText(font, punctuation);
-                    FontHelper.renderRotatedText(sb, font, punctuation, current_x, current_y, start_x - current_x + gl.width / 2.0F, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y + -12.0F, 0.0F, true, Settings.CREAM_COLOR);
+                    FontHelper.renderRotatedText(sb, font, punctuation, current_x, current_y, start_x - current_x + gl.width / 2.0F, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y - 12.0F, 0.0F, true, Settings.CREAM_COLOR);
                     gl.setText(font, punctuation);
                     start_x += gl.width;
                 } else if (token.charAt(0) == '!') {
@@ -306,7 +319,7 @@ public class ScvRenderDescriptionPatch {
                 } else if (token.equals("[R]. ")) {
                     gl.width = card_energy_w * drawScale / Settings.scale;
                     renderSmallEnergy(instance, sb, AbstractCard.orb_red, (start_x - current_x) / Settings.scale / drawScale, -87.0F - (((float) card.description.size() - 4.0F) / 2.0F - (float) i + 1.0F) * spacing);
-                    FontHelper.renderRotatedText(sb, font, LocalizedStrings.PERIOD, current_x, current_y, start_x - current_x + card_energy_w * drawScale, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y + -12.0F, 0.0F, true, Settings.CREAM_COLOR);
+                    FontHelper.renderRotatedText(sb, font, LocalizedStrings.PERIOD, current_x, current_y, start_x - current_x + card_energy_w * drawScale, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y - 12.0F, 0.0F, true, Settings.CREAM_COLOR);
                     start_x += gl.width;
                     gl.setText(font, LocalizedStrings.PERIOD);
                     start_x += gl.width;
@@ -317,7 +330,7 @@ public class ScvRenderDescriptionPatch {
                 } else if (token.equals("[G]. ")) {
                     gl.width = card_energy_w * drawScale;
                     renderSmallEnergy(instance, sb, AbstractCard.orb_green, (start_x - current_x) / Settings.scale / drawScale, -87.0F - (((float) card.description.size() - 4.0F) / 2.0F - (float) i + 1.0F) * spacing);
-                    FontHelper.renderRotatedText(sb, font, LocalizedStrings.PERIOD, current_x, current_y, start_x - current_x + card_energy_w * drawScale, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y + -12.0F, 0.0F, true, Settings.CREAM_COLOR);
+                    FontHelper.renderRotatedText(sb, font, LocalizedStrings.PERIOD, current_x, current_y, start_x - current_x + card_energy_w * drawScale, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y - 12.0F, 0.0F, true, Settings.CREAM_COLOR);
                     start_x += gl.width;
                 } else if (token.equals("[B] ")) {
                     gl.width = card_energy_w * drawScale;
@@ -326,7 +339,7 @@ public class ScvRenderDescriptionPatch {
                 } else if (token.equals("[B]. ")) {
                     gl.width = card_energy_w * drawScale;
                     renderSmallEnergy(instance, sb, AbstractCard.orb_blue, (start_x - current_x) / Settings.scale / drawScale, -87.0F - (((float) card.description.size() - 4.0F) / 2.0F - (float) i + 1.0F) * spacing);
-                    FontHelper.renderRotatedText(sb, font, LocalizedStrings.PERIOD, current_x, current_y, start_x - current_x + card_energy_w * drawScale, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y + -12.0F, 0.0F, true, Settings.CREAM_COLOR);
+                    FontHelper.renderRotatedText(sb, font, LocalizedStrings.PERIOD, current_x, current_y, start_x - current_x + card_energy_w * drawScale, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y - 12.0F, 0.0F, true, Settings.CREAM_COLOR);
                     start_x += gl.width;
                 } else if (token.equals("[W] ")) {
                     gl.width = card_energy_w * drawScale;
@@ -335,11 +348,11 @@ public class ScvRenderDescriptionPatch {
                 } else if (token.equals("[W]. ")) {
                     gl.width = card_energy_w * drawScale;
                     renderSmallEnergy(instance, sb, AbstractCard.orb_purple, (start_x - current_x) / Settings.scale / drawScale, -87.0F - (((float) card.description.size() - 4.0F) / 2.0F - (float) i + 1.0F) * spacing);
-                    FontHelper.renderRotatedText(sb, font, LocalizedStrings.PERIOD, current_x, current_y, start_x - current_x + card_energy_w * drawScale, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y + -12.0F, 0.0F, true, Settings.CREAM_COLOR);
+                    FontHelper.renderRotatedText(sb, font, LocalizedStrings.PERIOD, current_x, current_y, start_x - current_x + card_energy_w * drawScale, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y - 12.0F, 0.0F, true, Settings.CREAM_COLOR);
                     start_x += gl.width;
                 } else {
                     gl.setText(font, token);
-                    FontHelper.renderRotatedText(sb, font, token, current_x, current_y, start_x - current_x + gl.width / 2.0F, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y + -12.0F, 0.0F, true, Settings.CREAM_COLOR);
+                    FontHelper.renderRotatedText(sb, font, token, current_x, current_y, start_x - current_x + gl.width / 2.0F, (float) i * 1.53F * -font.getCapHeight() + draw_y - current_y - 12.0F, 0.0F, true, Settings.CREAM_COLOR);
                     start_x += gl.width;
                 }
             }
