@@ -4,10 +4,7 @@ import basemod.BaseMod;
 import basemod.interfaces.PostRenderSubscriber;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.PixmapIO;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
@@ -19,6 +16,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import io.chaofan.sts.ttsgenerator.cards.GoldenTicket;
 import io.chaofan.sts.ttsgenerator.model.CardSetDef;
@@ -31,9 +29,13 @@ import java.util.Map;
 @SpireInitializer
 public class TtsGenerator implements PostRenderSubscriber {
     private boolean saved = false;
+
     public static boolean isGenerating = false;
     private static String generatingFileName;
     public static Map<String, TabletopCardDef> cardMap = new HashMap<>();
+    private static Texture cardGlowAttack;
+    private static Texture cardGlowSkill;
+    private static Texture cardGlowPower;
 
     public static void initialize() {
         BaseMod.subscribe(new TtsGenerator());
@@ -46,6 +48,10 @@ public class TtsGenerator implements PostRenderSubscriber {
         }
 
         saved = true;
+
+        cardGlowAttack = ImageMaster.loadImage("ttsgenerator/images/glowattack.png");
+        cardGlowSkill = ImageMaster.loadImage("ttsgenerator/images/glowskill.png");
+        cardGlowPower = ImageMaster.loadImage("ttsgenerator/images/glowpower.png");
 
         // Load card definition
         // See TabletopCardDef.java for whole definition
@@ -90,7 +96,7 @@ public class TtsGenerator implements PostRenderSubscriber {
 
         float factor = Math.max((float)pw / Settings.WIDTH, (float)ph / Settings.HEIGHT);
 
-        FrameBuffer fb = new FrameBuffer(Pixmap.Format.RGB888, bw, bh, false, false);
+        FrameBuffer fb = new FrameBuffer(Pixmap.Format.RGBA8888, bw, bh, false, false);
         TextureRegion textureRegion = new TextureRegion(fb.getColorBufferTexture(), (bw - w) / 2, (bh - h) / 2 + 30, w, h - 30);
         FrameBuffer panel = new FrameBuffer(Pixmap.Format.RGB888, (int) (Settings.WIDTH * factor) + 1, (int) (Settings.HEIGHT * factor) + 1, false, false);
 
@@ -110,7 +116,11 @@ public class TtsGenerator implements PostRenderSubscriber {
 
     private void renderBuffer(SpriteBatch sb, CardSetDef csd, SingleCardViewPopup scv, int w, int h, int pw, int ph, float factor, FrameBuffer fb, TextureRegion textureRegion, FrameBuffer panel, boolean upgraded) {
         panel.begin();
-        Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+        if (upgraded) {
+            Gdx.gl.glClearColor(csd.upgradeColorR / 255f, csd.upgradeColorG / 255f, csd.upgradeColorB / 255f, 1.0F);
+        } else {
+            Gdx.gl.glClearColor(csd.colorR / 255f, csd.colorG / 255f, csd.colorB / 255f, 1.0F);
+        }
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         panel.end();
 
@@ -147,10 +157,27 @@ public class TtsGenerator implements PostRenderSubscriber {
 
                 panel.begin();
                 sb.begin();
-                sb.setColor(Color.WHITE);
                 sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+                TabletopCardDef cardDef = cardMap.get(card.cardID);
+                Texture cardGlow = cardGlowSkill;
+                if ((cardDef != null && "ATTACK".equals(cardDef.type)) ||
+                        ((cardDef == null || cardDef.type == null) && card.type == AbstractCard.CardType.ATTACK)) {
+                    cardGlow = cardGlowAttack;
+                } else if ((cardDef != null && "POWER".equals(cardDef.type)) ||
+                        ((cardDef == null || cardDef.type == null) && card.type == AbstractCard.CardType.POWER)) {
+                    cardGlow = cardGlowPower;
+                }
+
                 float scale = 1f / factor;
-                sb.draw(textureRegion, (float) x * w * scale, (y * h) * scale, w * scale, h * scale);
+                if (upgraded) {
+                    sb.setColor(csd.upgradeGlowR / 255f, csd.upgradeGlowG / 255f, csd.upgradeGlowB / 255f, 1.0F);
+                } else {
+                    sb.setColor(csd.glowR / 255f, csd.glowG / 255f, csd.glowB / 255f, 0.7F);
+                }
+                sb.draw(cardGlow, x * w * scale, (y + 1) * h * scale, w * scale, -h * scale);
+                sb.setColor(Color.WHITE);
+                sb.draw(textureRegion, x * w * scale, y * h * scale, w * scale, h * scale);
                 sb.end();
                 panel.end();
             }
