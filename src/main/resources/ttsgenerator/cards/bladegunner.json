@@ -9,7 +9,7 @@
   },
   "bladegunner:card.Shoot": {
     "description": "*Shoot",
-    "upgradeDescription": "*Shoot. NL +1 [Atk]"
+    "upgradeDescription": "*Shoot. NL +1 damage."
   },
   "bladegunner:card.RevolverCard": {
     "description": "*Shoot = 1 [Atk] NL Play this when combat starts.",
@@ -28,16 +28,16 @@
     ]
   },
   "bladegunner:card.RussianRoulette": {
-    "description": "Can only be played if active *Gun is Revolver with 1 [Ammo]. NL *Shoot. NL +5 [Atk]",
-    "upgradeDescription": "Can only be played if active *Gun is Revolver with 1 [Ammo]. NL *Shoot. NL +7 [Atk]"
+    "description": "Can only be played if active *Gun is Revolver with 1 [Ammo]. NL *Shoot. NL +5 damage.",
+    "upgradeDescription": "Can only be played if active *Gun is Revolver with 1 [Ammo]. NL *Shoot. NL +7 damage."
   },
   "bladegunner:card.LowAmmoAnxiety": {
     "description": "2 [Atk] NL If you have less than half of the [Ammo] on active *Gun, 1 [Atk]",
     "upgradeDescription": "3 [Atk] NL If you have less than half of the [Ammo] on active *Gun, 2 [Atk]"
   },
   "bladegunner:card.GunstockStrike": {
-    "description": "1 [Atk] NL +1 [Atk] for each *Gun you have played.",
-    "upgradeDescription": "1 [Atk] NL +2 [Atk] for each *Gun you have played."
+    "description": "1 [Atk] NL +1 damage for each *Gun you have played.",
+    "upgradeDescription": "1 [Atk] NL +2 damage for each *Gun you have played."
   },
   "bladegunner:card.RashShoot": {
     "description": "*Shoot. NL [Dazed]",
@@ -48,8 +48,8 @@
     "upgradeDescription": "If you have 3 or less [Ammo] on active *Gun, NL [E] [E]. NL *Shoot twice."
   },
   "bladegunner:card.Headshot": {
-    "description": "*Shoot. NL +1 [Atk]",
-    "upgradeDescription": "*Shoot. NL +2 [Atk]"
+    "description": "*Shoot. NL +1 damage.",
+    "upgradeDescription": "*Shoot. NL +2 damage."
   },
   "bladegunner:card.Gunsmoke": {
     "description": "Remove all [Ammo] on active *Gun. NL [Vulnerable]",
@@ -97,7 +97,7 @@
     "upgradeDescription": "X+1 [Def] NL X equal to [Atk] on active *Gun. NL Draw a card."
   },
   "bladegunner:card.TacticalRetreat": {
-    "description": "1 [Def] NL +1 [Atk] to next Attack you play this turn.",
+    "description": "1 [Def] NL +1 damage to next Attack you play this turn.",
     "cost": 1,
     "upgradeCost": 0
   },
@@ -106,8 +106,8 @@
     "upgradeDescription": "Put 2 most recently played *Shooting *cards from discard pile to your hand."
   },
   "bladegunner:card.MadBlade": {
-    "description": "Gain [Flex]. NL *End *of *this *turn: unless you have played Non-Shoot Attacks, lose [Flex]. NL *Exhaust.",
-    "upgradeDescription": "Gain [Flex]. NL *End *of *this *turn: unless you have played Non-Shoot Attacks, lose [Flex].",
+    "description": "Gain [Flex]. NL *End *of *this *turn: unless you have played a Non-Shoot Attack, lose [Flex]. NL *Exhaust.",
+    "upgradeDescription": "Gain [Flex]. NL *End *of *this *turn: unless you have played a Non-Shoot Attack, lose [Flex].",
     "descriptionYOffset": -15
   },
   "bladegunner:card.IncreaseCaliber": {
@@ -136,8 +136,8 @@
     ]
   },
   "bladegunner:card.AccurateShoot": {
-    "description": "*Shoot twice. NL If you are solo, in boss fight, or targeting enemies on other row, +1 [Atk].",
-    "upgradeDescription": "*Shoot twice. NL If you are solo, in boss fight, or targeting enemies on other row, +2 [Atk]."
+    "description": "*Shoot twice. NL If you are solo, in boss fight, or targeting enemies on other row, +1 damage.",
+    "upgradeDescription": "*Shoot twice. NL If you are solo, in boss fight, or targeting enemies on other row, +2 damage."
   },
   "bladegunner:card.Disassemble": {
     "description": "*Exhaust a card. NL Gain [E] equal to its cost.",
@@ -146,7 +146,7 @@
     "upgradeCost": 0
   },
   "bladegunner:card.SniperRifleCard": {
-    "description": "Shoot = 5 [Atk] NL *Shooting *cards shoots only once.",
+    "description": "Shoot = 5 [Atk] NL *Shooting *cards shoot only once.",
     "descriptionYOffset": 60,
     "slots": [
       { "x": -185, "y": 10 },
@@ -169,8 +169,8 @@
     "upgradeDescription": "8 [Atk] NL Remove all [Ammo] from active *Gun. NL If more than 3, gain [Flex]."
   },
   "bladegunner:card.Camouflage": {
-    "description": "For 2 turns, you can't lose more than 1 HP per turn, NL nor play Attacks whose NL [Atk] + [Flex] < 4.",
-    "upgradeDescription": "For 3 turns, you can't lose more than 1 HP per turn, NL nor play Attacks whose NL [Atk] + [Flex] < 4.",
+    "description": "For 2 turns, you can't lose more than 1 HP per turn, NL nor play Attacks whose NL maximum [Atk] + [Flex] < 4.",
+    "upgradeDescription": "For 3 turns, you can't lose more than 1 HP per turn, NL nor play Attacks whose NL maximum [Atk] + [Flex] < 4.",
     "descriptionScale": 0.9,
     "descriptionYOffset": 50,
     "slots": [
@@ -189,11 +189,11 @@
     "description": "*Shooting doesn't use [Ammo] this turn."
   },
   "bladegunner:card.Ricochet": {
-    "description": "Double [Atk] from *Shooting this turn."
+    "description": "Double damage from *Shooting this turn."
   },
   "bladegunner:card.FlashBang": {
-    "description": "For 2 turns, -1 [Atk] from damage you take.",
-    "upgradeDescription": "For 3 turns, -1 [Atk] from damage you take.",
+    "description": "For 2 turns, -1 damage from [Atk] of enemies on your row.",
+    "upgradeDescription": "For 3 turns, -1 damage from [Atk] of enemies on your row.",
     "descriptionYOffset": 60,
     "slots": [
       { "x": -80, "y": 10 },
@@ -309,8 +309,8 @@
     "description": "*Start *of *turn: NL Draw a card. NL [Dice4] [Dice5] [Dice6] [E]"
   },
   "bladegunner:card.LaserPistolCard": {
-    "description": "*Shoot = 1 [Atk] NL +1 [Atk] for every 4 [Ammo] on this card",
-    "upgradeDescription": "*Shoot = 1 [Atk] NL +1 [Atk] for every 3 [Ammo] on this card",
+    "description": "*Shoot = 1 [Atk] NL +1 damage for every 4 [Ammo] on this card",
+    "upgradeDescription": "*Shoot = 1 [Atk] NL +1 damage for every 3 [Ammo] on this card",
     "descriptionScale": 0.77,
     "descriptionYOffset": 100,
     "slots": [
@@ -347,8 +347,8 @@
     ]
   },
   "bladegunner:card.CombinationAttack": {
-    "description": "*End *of *turn: *Shoot once. NL You can choose target on any row.",
-    "upgradeDescription": "*End *of *turn: *Shoot once. NL You can choose target on any row.",
+    "description": "*End *of *turn: NL *Shoot.",
+    "upgradeDescription": "*End *of *turn: NL *Shoot.",
     "cost": 2,
     "upgradeCost": 1
   },

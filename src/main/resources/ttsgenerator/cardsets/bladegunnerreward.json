@@ -1,6 +1,12 @@
 {
   "width": 10,
   "height": 6,
+  "upgradeColorR": 96,
+  "upgradeColorG": 76,
+  "upgradeColorB": 20,
+  "upgradeGlowR": 190,
+  "upgradeGlowG": 180,
+  "upgradeGlowB": 160,
   "list": [
     "bladegunner:card.RussianRoulette",
     "bladegunner:card.RussianRoulette",

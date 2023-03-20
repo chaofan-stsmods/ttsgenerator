@@ -1,6 +1,15 @@
 {
   "width": 5,
   "height": 3,
+  "colorR": 115,
+  "colorG": 111,
+  "colorB": 109,
+  "upgradeColorR": 96,
+  "upgradeColorG": 76,
+  "upgradeColorB": 20,
+  "upgradeGlowR": 190,
+  "upgradeGlowG": 180,
+  "upgradeGlowB": 160,
   "list": [
     "bladegunner:card.Strike",
     "bladegunner:card.Strike",
