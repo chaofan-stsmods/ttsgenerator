@@ -93,8 +93,8 @@
     "upgradeDescription": "Double your [Def]. NL 3 [Def]"
   },
   "bladegunner:card.GunAsShield": {
-    "description": "X [Def] NL X equal to [Atk] on active *Gun. NL Draw a card.",
-    "upgradeDescription": "X+1 [Def] NL X equal to [Atk] on active *Gun. NL Draw a card."
+    "description": "N [Def] NL N equal to [Atk] on active *Gun. NL Draw a card.",
+    "upgradeDescription": "N+1 [Def] NL N equal to [Atk] on active *Gun. NL Draw a card."
   },
   "bladegunner:card.TacticalRetreat": {
     "description": "1 [Def] NL +1 damage to next Attack you play this turn.",
@@ -259,8 +259,8 @@
     "rarity": "RARE"
   },
   "bladegunner:card.BarrageOfBullets": {
-    "description": "*Shoot X times. NL X equal to count of [Ammo] on your board. NL Remove 1 [Ammo] from your board.",
-    "upgradeDescription": "*Shoot X times. NL X equal to count of [Ammo] on your board.",
+    "description": "*Shoot N times. NL N equal to count of [Ammo] on your board. NL Remove 1 [Ammo] from your board.",
+    "upgradeDescription": "*Shoot N times. NL N equal to count of [Ammo] on your board.",
     "rarity": "COMMON"
   },
   "bladegunner:card.AmmoBox": {
@@ -272,8 +272,8 @@
     "upgradeDescription": "3 [Def] NL Put 1 [Ammo] on your board. NL You can't play additional cards this turn."
   },
   "bladegunner:card.SpecialVulnerary": {
-    "description": "Heal X-1 HP. NL X equal to count of [Ammo] on your board. NL *Exhaust.",
-    "upgradeDescription": "Heal X HP. NL X equal to count of [Ammo] on your board. NL *Exhaust."
+    "description": "Heal N-1 HP. NL N equal to count of [Ammo] on your board. NL *Exhaust.",
+    "upgradeDescription": "Heal N HP. NL N equal to count of [Ammo] on your board. NL *Exhaust."
   },
   "bladegunner:card.BulletsInSand": {
     "description": "Put 2X [Ammo] on this card. NL *Start *of *turn: Move 2 [Ammo] to your board.",
@@ -309,8 +309,8 @@
     "description": "*Start *of *turn: NL Draw a card. NL [Dice4] [Dice5] [Dice6] [E]"
   },
   "bladegunner:card.LaserPistolCard": {
-    "description": "*Shoot = 1 [Atk] NL +1 damage for every 4 [Ammo] on this card",
-    "upgradeDescription": "*Shoot = 1 [Atk] NL +1 damage for every 3 [Ammo] on this card",
+    "description": "*Shoot = 1+N/4 [Atk] (Round down) NL N is count of [Ammo] on this card.",
+    "upgradeDescription": "*Shoot = 1+N/3 [Atk] (Round down) NL N is count of [Ammo] on this card.",
     "descriptionScale": 0.77,
     "descriptionYOffset": 100,
     "slots": [
