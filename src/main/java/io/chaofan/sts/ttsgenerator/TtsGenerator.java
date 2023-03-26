@@ -28,6 +28,8 @@ import java.util.Map;
 
 @SpireInitializer
 public class TtsGenerator implements PostRenderSubscriber {
+    private static final int yCut = 30;
+
     private boolean saved = false;
 
     public static boolean isGenerating = false;
@@ -55,10 +57,7 @@ public class TtsGenerator implements PostRenderSubscriber {
 
         // Load card definition
         // See TabletopCardDef.java for whole definition
-        Gson gson = new Gson();
-        String cards = Gdx.files.internal("ttsgenerator/cards/ironclad.json").readString();
-        Type cardDefMapType = (new TypeToken<Map<String, TabletopCardDef>>() {}).getType();
-        cardMap = gson.fromJson(cards, cardDefMapType);
+        loadCardDefinition("ironclad");
 
         // Generate deck
         generateCardSet(sb, "ironcladbasic");
@@ -66,6 +65,13 @@ public class TtsGenerator implements PostRenderSubscriber {
         System.out.println("Generator Done");
 
         System.exit(0);
+    }
+
+    private void loadCardDefinition(String name) {
+        Gson gson = new Gson();
+        Type cardDefMapType = (new TypeToken<Map<String, TabletopCardDef>>() {}).getType();
+        String cards = Gdx.files.internal("ttsgenerator/cards/"+ name + ".json").readString();
+        cardMap.putAll(gson.fromJson(cards, cardDefMapType));
     }
 
     private void generateCardSet(SpriteBatch sb, String name) {
@@ -94,7 +100,7 @@ public class TtsGenerator implements PostRenderSubscriber {
         float factor = Math.max((float)pw / Settings.WIDTH, (float)ph / Settings.HEIGHT);
 
         FrameBuffer fb = new FrameBuffer(Pixmap.Format.RGBA8888, bw, bh, false, false);
-        TextureRegion textureRegion = new TextureRegion(fb.getColorBufferTexture(), (bw - w) / 2, (bh - h) / 2 + 30, w, h - 30);
+        TextureRegion textureRegion = new TextureRegion(fb.getColorBufferTexture(), (bw - w) / 2, (bh - h) / 2 + yCut, w, h - yCut);
         FrameBuffer panel = new FrameBuffer(Pixmap.Format.RGB888, (int) (Settings.WIDTH * factor) + 1, (int) (Settings.HEIGHT * factor) + 1, false, false);
 
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
@@ -174,7 +180,7 @@ public class TtsGenerator implements PostRenderSubscriber {
                 }
                 sb.draw(cardGlow, x * w * scale, (y + 1) * h * scale, w * scale, -h * scale);
                 sb.setColor(Color.WHITE);
-                sb.draw(textureRegion, x * w * scale, y * h * scale, w * scale, h * scale);
+                sb.draw(textureRegion, x * w * scale, y * h * scale, w * scale, (h - yCut) * scale);
                 sb.end();
                 panel.end();
             }
