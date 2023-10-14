@@ -259,38 +259,38 @@
     "rarity": "RARE"
   },
   "bladegunner:card.BarrageOfBullets": {
-    "description": "*Shoot N times. NL N equal to count of [Ammo] on your board. NL Remove 1 [Ammo] from your board.",
-    "upgradeDescription": "*Shoot N times. NL N equal to count of [Ammo] on your board.",
+    "description": "*Shoot N times. NL N equal to count of [Bullet] on your board. NL Remove 1 [Bullet] from your board.",
+    "upgradeDescription": "*Shoot N times. NL N equal to count of [Bullet] on your board.",
     "rarity": "COMMON"
   },
   "bladegunner:card.AmmoBox": {
-    "description": "2 [Def] NL Put 2 [Ammo] on your board.",
-    "upgradeDescription": "3 [Def] NL Put 2 [Ammo] on your board."
+    "description": "2 [Def] NL Put 2 [Bullet] on your board.",
+    "upgradeDescription": "3 [Def] NL Put 2 [Bullet] on your board."
   },
   "bladegunner:card.ReloadingPractice": {
-    "description": "2 [Def] NL Put 1 [Ammo] on your board. NL You can't play additional cards this turn.",
-    "upgradeDescription": "3 [Def] NL Put 1 [Ammo] on your board. NL You can't play additional cards this turn."
+    "description": "2 [Def] NL Put 1 [Bullet] on your board. NL You can't play additional cards this turn.",
+    "upgradeDescription": "3 [Def] NL Put 1 [Bullet] on your board. NL You can't play additional cards this turn."
   },
   "bladegunner:card.SpecialVulnerary": {
-    "description": "Heal N-1 HP. NL N equal to count of [Ammo] on your board. NL *Exhaust.",
-    "upgradeDescription": "Heal N HP. NL N equal to count of [Ammo] on your board. NL *Exhaust."
+    "description": "Heal N-1 HP. NL N equal to count of [Bullet] on your board. NL *Exhaust.",
+    "upgradeDescription": "Heal N HP. NL N equal to count of [Bullet] on your board. NL *Exhaust."
   },
   "bladegunner:card.BulletsInSand": {
-    "description": "Put 2X [Ammo] on this card. NL *Start *of *turn: Move 2 [Ammo] to your board.",
-    "upgradeDescription": "Put 2X+2 [Ammo] on this card. NL *Start *of *turn: Move 2 [Ammo] to your board.",
+    "description": "Put 2X [Bullet] on this card. NL *Start *of *turn: Move 2 [Bullet] to your board.",
+    "upgradeDescription": "Put 2X+2 [Bullet] on this card. NL *Start *of *turn: Move 2 [Bullet] to your board.",
     "type": "POWER",
     "image": "bladegunner\\images\\cards\\portrait\\BulletsInSand_power.png"
   },
   "bladegunner:card.Eject": {
-    "description": "Remove all [Ammo] on active *Gun. NL Put 2 [Ammo] on your board. NL *Exhaust.",
-    "upgradeDescription": "Remove all [Ammo] on active *Gun. NL Put 3 [Ammo] on your board. NL *Exhaust."
+    "description": "Remove all [Ammo] on active *Gun. NL Put 2 [Bullet] on your board. NL *Exhaust.",
+    "upgradeDescription": "Remove all [Ammo] on active *Gun. NL Put 3 [Bullet] on your board. NL *Exhaust."
   },
   "bladegunner:card.ShellDefense": {
-    "description": "When you use [Ammo] on your board, you may gain 1 [Def] instead of 1 [E].",
-    "upgradeDescription": "When you use [Ammo] on your board, gain 1 [Def]."
+    "description": "When you use [Bullet] on your board, you may gain 1 [Def] instead of 1 [E].",
+    "upgradeDescription": "When you use [Bullet] on your board, gain 1 [Def]."
   },
   "bladegunner:card.Thrift": {
-    "description": "When [Dazed] is *Exhausted, put 1 [Ammo] on your board.",
+    "description": "When [Dazed] is *Exhausted, put 1 [Bullet] on your board.",
     "cost": 2,
     "upgradeCost": 1
   },
@@ -323,15 +323,15 @@
     ]
   },
   "bladegunner:card.MechaForm": {
-    "description": "*Start *of *turn: If active *Gun is: NL *Revolver: Gain [Flex]. NL *Shotgun: [E], draw 2 cards. NL *Laser *Pistol: Put 2 [Ammo] on it, NL for [Atk] calculation only. NL *Sniper *Rifle: 2 [Def] NL *Rocket *Launcher: Put [Ammo] on your board.",
+    "description": "*Start *of *turn: If active *Gun is: NL *Revolver: Gain [Flex]. NL *Shotgun: [E], draw 2 cards. NL *Laser *Pistol: Put 2 [Ammo] on it, NL for [Atk] calculation only. NL *Sniper *Rifle: 2 [Def] NL *Rocket *Launcher: Put [Bullet] on your board.",
     "descriptionScale": 0.75,
     "descriptionYOffset": -10,
     "cost": 3,
     "upgradeCost": 2
   },
   "bladegunner:card.DaggerInBullets": {
-    "description": "4 [Atk] NL Costs 1 less [E] for each [Ammo] on your board.",
-    "upgradeDescription": "6 [Atk] NL Costs 1 less [E] for each [Ammo] on your board."
+    "description": "4 [Atk] NL Costs 1 less [E] for each [Bullet] on your board.",
+    "upgradeDescription": "6 [Atk] NL Costs 1 less [E] for each [Bullet] on your board."
   },
   "bladegunner:card.Gust": {
     "description": "Place a cube on this card. NL When an enemy loses  [Vulnerable] or applies  [Weak], you may remove a cube to prevent it.",

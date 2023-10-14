@@ -31,6 +31,7 @@ public class ScvRenderDescriptionPatch {
     private static final Texture slot = ImageMaster.loadImage("ttsgenerator/images/slot.png");
     private static final Texture all = ImageMaster.loadImage("ttsgenerator/images/all.png");
     private static final Texture ammo = ImageMaster.loadImage("ttsgenerator/images/ammo.png");
+    private static final Texture bullet = ImageMaster.loadImage("ttsgenerator/images/bullet.png");
     private static final Texture dice = ImageMaster.loadImage("ttsgenerator/images/dice.png");
 
     @SpirePrefixPatch
@@ -252,6 +253,9 @@ public class ScvRenderDescriptionPatch {
                 // Add your icons here.
             case "Ammo":
                 region = new TextureAtlas.AtlasRegion(ammo, 0, 0, all.getWidth(), all.getHeight());
+                break;
+            case "Bullet":
+                region = new TextureAtlas.AtlasRegion(bullet, 0, 0, all.getWidth(), all.getHeight());
                 break;
                 // End
 
