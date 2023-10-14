@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatchAlt;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -49,6 +50,9 @@ public class TtsGenerator implements PostRenderSubscriber {
             return;
         }
 
+        sb = new SpriteBatchAlt();
+        sb.begin();
+
         saved = true;
 
         cardGlowAttack = ImageMaster.loadImage("ttsgenerator/images/glowattack.png");
@@ -62,6 +66,7 @@ public class TtsGenerator implements PostRenderSubscriber {
 
         // Generate deck
         generateCardSet(sb, "ironcladbasic");
+        generateCardSet(sb, "samplecards");
         generateCardSet(sb, "bladegunnervictim");
         generateCardSet(sb, "bladegunnerbasic");
         generateCardSet(sb, "bladegunnerreward");
@@ -106,7 +111,7 @@ public class TtsGenerator implements PostRenderSubscriber {
 
         FrameBuffer fb = new FrameBuffer(Pixmap.Format.RGBA8888, bw, bh, false, false);
         TextureRegion textureRegion = new TextureRegion(fb.getColorBufferTexture(), (bw - w) / 2, (bh - h) / 2 + yCut, w, h - yCut);
-        FrameBuffer panel = new FrameBuffer(Pixmap.Format.RGB888, (int) (Settings.WIDTH * factor) + 1, (int) (Settings.HEIGHT * factor) + 1, false, false);
+        FrameBuffer panel = new FrameBuffer(Pixmap.Format.RGBA8888, (int) (Settings.WIDTH * factor) + 1, (int) (Settings.HEIGHT * factor) + 1, false, false);
 
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         sb.end();
@@ -125,9 +130,9 @@ public class TtsGenerator implements PostRenderSubscriber {
     private void renderBuffer(SpriteBatch sb, CardSetDef csd, SingleCardViewPopup scv, int w, int h, int pw, int ph, float factor, FrameBuffer fb, TextureRegion textureRegion, FrameBuffer panel, boolean upgraded) {
         panel.begin();
         if (upgraded) {
-            Gdx.gl.glClearColor(csd.upgradeColorR / 255f, csd.upgradeColorG / 255f, csd.upgradeColorB / 255f, 1.0F);
+            Gdx.gl.glClearColor(csd.upgradeColorR / 255f, csd.upgradeColorG / 255f, csd.upgradeColorB / 255f, csd.upgradeColorA / 255f);
         } else {
-            Gdx.gl.glClearColor(csd.colorR / 255f, csd.colorG / 255f, csd.colorB / 255f, 1.0F);
+            Gdx.gl.glClearColor(csd.colorR / 255f, csd.colorG / 255f, csd.colorB / 255f, csd.colorA / 255f);
         }
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         panel.end();
@@ -179,9 +184,9 @@ public class TtsGenerator implements PostRenderSubscriber {
 
                 float scale = 1f / factor;
                 if (upgraded) {
-                    sb.setColor(csd.upgradeGlowR / 255f, csd.upgradeGlowG / 255f, csd.upgradeGlowB / 255f, 1.0F);
+                    sb.setColor(csd.upgradeGlowR / 255f, csd.upgradeGlowG / 255f, csd.upgradeGlowB / 255f, csd.upgradeGlowA / 255f);
                 } else {
-                    sb.setColor(csd.glowR / 255f, csd.glowG / 255f, csd.glowB / 255f, 0.7F);
+                    sb.setColor(csd.glowR / 255f, csd.glowG / 255f, csd.glowB / 255f, csd.glowA / 255f);
                 }
                 sb.draw(cardGlow, x * w * scale, (y + 1) * h * scale, w * scale, -h * scale);
                 sb.setColor(Color.WHITE);

@@ -9,13 +9,17 @@ public class CardSetDef {
     public int colorR;
     public int colorG;
     public int colorB;
+    public int colorA = 255;
     public int glowR;
     public int glowG;
     public int glowB;
+    public int glowA = 255;
     public int upgradeColorR;
     public int upgradeColorG;
     public int upgradeColorB;
+    public int upgradeColorA = 255;
     public int upgradeGlowR;
     public int upgradeGlowG;
     public int upgradeGlowB;
+    public int upgradeGlowA = 178;
 }

@@ -1,0 +1,14 @@
+{
+  "width": 5,
+  "height": 2,
+  "glowA": 0,
+  "colorA": 0,
+  "upgradeGlowA": 0,
+  "upgradeA": 0,
+  "list": [
+    "Clash",
+    "Grand Finale",
+    "Gash",
+    "PathToVictory"
+  ]
+}
