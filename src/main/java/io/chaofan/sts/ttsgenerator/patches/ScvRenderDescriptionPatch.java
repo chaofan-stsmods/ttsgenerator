@@ -263,15 +263,17 @@ public class ScvRenderDescriptionPatch {
                 region = AbstractPower.atlas.findRegion("128/" + icon.toLowerCase());
                 if (region != null) {
                     region = new TextureAtlas.AtlasRegion(region);
-                    region.offsetX = 0;
-                    region.offsetY = 0;
+                    int regionSize = Math.max(region.getRegionWidth(), region.getRegionHeight());
+                    int padding = Math.max(15, (128 - regionSize) / 2);
+                    region.offsetX -= padding;
+                    region.offsetY = 128 - region.offsetY - region.getRegionHeight() - padding;
                 }
         }
 
         if (region != null) {
             TextureRegion textureRegion = new TextureRegion(region);
             float scale = iconSize / Math.max(textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
-            sb.draw(textureRegion, x + region.offsetX * drawScale, y + region.offsetY * drawScale, textureRegion.getRegionWidth() * scale * drawScale, textureRegion.getRegionHeight() * scale * drawScale);
+            sb.draw(textureRegion, x + region.offsetX * drawScale * scale, y + region.offsetY * drawScale * scale, textureRegion.getRegionWidth() * scale * drawScale, textureRegion.getRegionHeight() * scale * drawScale);
             sb.setColor(Color.WHITE);
         }
     }
