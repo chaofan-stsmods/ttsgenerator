@@ -63,8 +63,7 @@
   },
   "bladegunner:card.Gunsmoke": {
     "description": "Remove all [Ammo] on active *Gun. NL [Vulnerable]",
-    "upgradeDescription": "Choose and remove one or more [Ammo] on active *Gun. NL [Vulnerable]",
-    "cost": 0,
+    "cost": 1,
     "upgradeCost": 0,
     "descriptionScale": 1.12
   },
@@ -220,21 +219,10 @@
     "descriptionScale": 1.12
   },
   "bladegunner:card.FlashBang": {
-    "description": "For 2 turns, -1 damage from [Atk] of enemies on your row.",
-    "upgradeDescription": "For 3 turns, -1 damage from [Atk] of enemies on your row.",
-    "descriptionYOffset": 60,
-    "slots": [
-      { "x": -80, "y": 10 },
-      { "x": 80, "y": 10 }
-    ],
-    "upgradeSlots": [
-      { "x": -130, "y": 10 },
-      { "x": 0, "y": 10 },
-      { "x": 130, "y": 10 }
-    ],
-    "type": "POWER",
-    "rarity": "RARE",
-    "image": "bladegunner\\images\\cards\\portrait\\FlashBang_power.png"
+    "description": "[All] [Weak] [Weak] NL *Exhaust.",
+    "upgradeDescription": "[All] [Weak] [Weak] [Weak] NL *Exhaust.",
+    "descriptionScale": 1.12,
+    "rarity": "RARE"
   },
   "bladegunner:card.Supplement": {
     "description": "If no [Ammo] on active *Gun, draw 2 cards, [E] [E]. NL *Reload.",
