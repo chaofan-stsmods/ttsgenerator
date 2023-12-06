@@ -190,7 +190,7 @@
     "descriptionScale": 0.96
   },
   "bladegunner:card.DimensionalShoot": {
-    "description": "*Shoot. NL Other players can cost [E] to +2 *Shoot. NL Each *Shoot can have a different target. NL *Exhaust.",
+    "description": "*Shoot. NL Each other player can cost [E] to *Shoot twice to a target they choose, using your *Active *Gun. NL *Exhaust.",
     "cost": 1,
     "upgradeCost": 0,
     "descriptionYOffset": -10,
