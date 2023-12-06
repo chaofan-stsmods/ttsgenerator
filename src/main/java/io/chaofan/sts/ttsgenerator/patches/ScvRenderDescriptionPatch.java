@@ -91,7 +91,7 @@ public class ScvRenderDescriptionPatch {
         font.getData().setScale(cardDef.descriptionScale);
 
         String description = card.upgraded && cardDef.upgradeDescription != null ? cardDef.upgradeDescription : cardDef.description;
-        String[] tokens = description.split("(?=[ .,])");
+        String[] tokens = description.split("(?=[ .,\\[])|(?<=[\\]])");
         List<List<String>> lines = new ArrayList<>();
         List<Float> lineWidths = new ArrayList<>();
         List<Float> lineHeights = new ArrayList<>();
