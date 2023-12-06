@@ -1,14 +1,14 @@
 {
   "Strike_R": {
-    "description": "1 [Atk]",
-    "upgradeDescription": "2 [Atk]"
+    "description": "1[Atk]",
+    "upgradeDescription": "2[Atk]"
   },
   "Defend_R": {
-    "description": "1 [Def]",
-    "upgradeDescription": "2 [Def] to any player."
+    "description": "1[Def]",
+    "upgradeDescription": "2[Def] to any player."
   },
   "Bash": {
-    "description": "2 [Atk] [Vulnerable]",
-    "upgradeDescription": "3 [Atk] [Vulnerable]"
+    "description": "2[Atk][Vulnerable]",
+    "upgradeDescription": "3[Atk][Vulnerable]"
   }
 }
