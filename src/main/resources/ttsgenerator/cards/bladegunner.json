@@ -73,8 +73,8 @@
     "descriptionScale": 1.12
   },
   "bladegunner:card.SmokeBomb": {
-    "description": "*Reload. NL 2[Def] to all players. NL (+1[Def] if you are solo)",
-    "upgradeDescription": "*Reload. NL 3[Def] to all players. NL (+1[Def] if you are solo)",
+    "description": "*Reload. NL 2[Def] to all players. NL +1[Def] if you are solo.",
+    "upgradeDescription": "*Reload. NL 3[Def] to all players. NL +1[Def] if you are solo.",
     "rarity": "UNCOMMON",
     "cost": 2,
     "upgradeCost": 2,
@@ -113,7 +113,7 @@
     "descriptionScale": 1.12
   },
   "bladegunner:card.GunAsShield": {
-    "description": "X [Def] to any player. NL X equal to [Atk] on *Active *Gun. NL Draw a card.",
+    "description": "X[Def] to any player. NL X equal to [Atk] on *Active *Gun. NL Draw a card.",
     "upgradeDescription": "X+1[Def] to any player. NL X equal to [Atk] on *Active *Gun. NL Draw a card.",
     "descriptionScale": 1.12
   },
