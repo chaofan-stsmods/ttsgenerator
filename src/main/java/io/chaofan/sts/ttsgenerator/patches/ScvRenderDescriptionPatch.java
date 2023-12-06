@@ -92,7 +92,7 @@ public class ScvRenderDescriptionPatch {
         font.getData().setScale(cardDef.descriptionScale);
 
         String description = card.upgraded && cardDef.upgradeDescription != null ? cardDef.upgradeDescription : cardDef.description;
-        String[] tokens = description.split("(?=[ .,\\[])|(?<=[\\]])");
+        String[] tokens = description.split("(?<=])|(?=[ .,])|(?<! )(?=\\[)");
         List<List<String>> lines = new ArrayList<>();
         List<Float> lineWidths = new ArrayList<>();
         List<Float> lineHeights = new ArrayList<>();
@@ -147,7 +147,14 @@ public class ScvRenderDescriptionPatch {
 
             if (!trimmedToken.equals("NL") && !added) {
                 currentWidth += tokenWidth;
-                currentLine.add(currentWidth == 0 ? trimmedToken : token);
+                if (trimmedToken.startsWith("[") && trimmedToken.endsWith("]")) {
+                    if (currentWidth != 0 && token.startsWith(" ")) {
+                        currentLine.add(" ");
+                    }
+                    currentLine.add(trimmedToken);
+                } else {
+                    currentLine.add(currentWidth == 0 ? trimmedToken : token);
+                }
             }
         }
 
@@ -171,7 +178,8 @@ public class ScvRenderDescriptionPatch {
             currentHeight += lineHeights.get(i);
             float start_x = current_x - currentWidth / 2;
 
-            for (String token : currentLine) {
+            for (int j = 0, currentLineSize = currentLine.size(); j < currentLineSize; j++) {
+                String token = currentLine.get(j);
                 String trimmedToken = token.startsWith(" ") ? token.substring(1) : token;
                 if (trimmedToken.startsWith("[") && trimmedToken.endsWith("]")) {
                     renderIcon(sb, card, trimmedToken.substring(1, trimmedToken.length() - 1),
@@ -192,6 +200,10 @@ public class ScvRenderDescriptionPatch {
                         } else {
                             token = trimmedToken.substring(1);
                         }
+                    }
+
+                    if (j == 0 && token.startsWith(" ")) {
+                        token = token.substring(1);
                     }
 
                     gl.setText(font, token);
