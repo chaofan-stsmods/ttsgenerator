@@ -182,9 +182,10 @@ public class TtsGenerator implements PostRenderSubscriber {
                 } else {
                     sb.setColor(csd.glowR / 255f, csd.glowG / 255f, csd.glowB / 255f, csd.glowA / 255f);
                 }
-                sb.draw(cardGlow, x * w * scale, (y + 1) * h * scale, w * scale, -h * scale);
+                int drawX = upgraded && csd.flipUpgradedCards ? csd.width - 1 - x : x;
+                sb.draw(cardGlow, drawX * w * scale, (y + 1) * h * scale, w * scale, -h * scale);
                 sb.setColor(Color.WHITE);
-                sb.draw(textureRegion, x * w * scale, y * h * scale, w * scale, (h - yCut) * scale);
+                sb.draw(textureRegion, drawX * w * scale, y * h * scale, w * scale, (h - yCut) * scale);
                 sb.end();
                 panel.end();
             }
