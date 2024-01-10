@@ -23,4 +23,5 @@ public class CardSetDef {
     public int upgradeGlowB;
     public int upgradeGlowA = 178;
     public boolean flipUpgradedCards;
+    public int singleCardOffset = 0;
 }
