@@ -70,6 +70,7 @@ public class TtsGenerator implements PostRenderSubscriber {
         generateCardSet(sb, "ironcladbasic");
         generateCardSet(sb, "samplecards");
         generateCardSet(sb, "bladegunnervictim");
+        outputCounter = 1;
         generateCardSet(sb, "bladegunnerbasic");
         generateCardSet(sb, "bladegunnerreward");
         generateCardSet(sb, "bladegunnergold");

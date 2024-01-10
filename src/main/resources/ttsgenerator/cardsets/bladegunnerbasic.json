@@ -10,6 +10,7 @@
   "upgradeGlowR": 190,
   "upgradeGlowG": 180,
   "upgradeGlowB": 160,
+  "singleCardOffset": 75,
   "list": [
     "bladegunner:card.Strike",
     "bladegunner:card.Strike",
