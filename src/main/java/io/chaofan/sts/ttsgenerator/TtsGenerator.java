@@ -40,6 +40,8 @@ public class TtsGenerator implements PostRenderSubscriber {
     private static Texture cardGlowSkill;
     private static Texture cardGlowPower;
 
+    public int outputCounter = 1;
+
     public static void initialize() {
         BaseMod.subscribe(new TtsGenerator());
     }
@@ -108,26 +110,30 @@ public class TtsGenerator implements PostRenderSubscriber {
         int ph = 1039 * csd.height;
 
         float factor = Math.max((float)pw / Settings.WIDTH, (float)ph / Settings.HEIGHT);
+        float factorSingle = Math.max((float)w / Settings.WIDTH, (float)h / Settings.HEIGHT);
 
         FrameBuffer fb = new FrameBuffer(Pixmap.Format.RGBA8888, bw, bh, false, false);
+        FrameBuffer single = new FrameBuffer(Pixmap.Format.RGBA8888, (int) (Settings.WIDTH * factorSingle) + 1, (int) (Settings.HEIGHT * factorSingle) + 1, false, false);
         TextureRegion textureRegion = new TextureRegion(fb.getColorBufferTexture(), (bw - w) / 2, (bh - h) / 2 + yCut, w, h - yCut);
         FrameBuffer panel = new FrameBuffer(Pixmap.Format.RGBA8888, (int) (Settings.WIDTH * factor) + 1, (int) (Settings.HEIGHT * factor) + 1, false, false);
 
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         sb.end();
 
-        renderBuffer(sb, csd, scv, w, h, pw, ph, factor, fb, textureRegion, panel, false);
-        renderBuffer(sb, csd, scv, w, h, pw, ph, factor, fb, textureRegion, panel, true);
-
-        panel.end();
+        renderBuffer(sb, csd, scv, w, h, pw, ph, factor, factorSingle, fb, textureRegion, panel, single, false);
+        renderBuffer(sb, csd, scv, w, h, pw, ph, factor, factorSingle, fb, textureRegion, panel, single, true);
 
         sb.begin();
 
         fb.dispose();
+        single.dispose();
         panel.dispose();
     }
 
-    private void renderBuffer(SpriteBatch sb, CardSetDef csd, SingleCardViewPopup scv, int w, int h, int pw, int ph, float factor, FrameBuffer fb, TextureRegion textureRegion, FrameBuffer panel, boolean upgraded) {
+    private void renderBuffer(SpriteBatch sb, CardSetDef csd, SingleCardViewPopup scv,
+                              int w, int h, int pw, int ph, float factor, float factorSingle,
+                              FrameBuffer fb, TextureRegion textureRegion, FrameBuffer panel, FrameBuffer single,
+                              boolean upgraded) {
         panel.begin();
         if (upgraded) {
             Gdx.gl.glClearColor(csd.upgradeColorR / 255f, csd.upgradeColorG / 255f, csd.upgradeColorB / 255f, csd.upgradeColorA / 255f);
@@ -194,6 +200,8 @@ public class TtsGenerator implements PostRenderSubscriber {
                 sb.draw(textureRegion, drawX * w * scale, y * h * scale, w * scale, (h - yCut) * scale);
                 sb.end();
                 panel.end();
+
+                renderSingleBuffer(sb, csd, w, h, factorSingle, textureRegion, single, upgraded, cardGlow, c);
             }
         }
 
@@ -201,6 +209,36 @@ public class TtsGenerator implements PostRenderSubscriber {
 
         panel.begin();
         Pixmap pixmap = ScreenUtils.getFrameBufferPixmap(0, 0, pw, ph);
-        PixmapIO.writePNG(new FileHandle(!upgraded ? generatingFileName + ".png" : generatingFileName + "_upgraded.png"), pixmap);
+        PixmapIO.writePNG(new FileHandle("ttsgenerator/" +
+                (!upgraded ? generatingFileName + ".png" : generatingFileName + "_upgraded.png")), pixmap);
+        panel.end();
+    }
+
+    private void renderSingleBuffer(SpriteBatch sb, CardSetDef csd, int w, int h, float factorSingle, TextureRegion textureRegion, FrameBuffer single, boolean upgraded, Texture cardGlow, int c) {
+        float singleScale = 1f / factorSingle;
+        single.begin();
+        sb.begin();
+        if (upgraded) {
+            Gdx.gl.glClearColor(csd.upgradeColorR / 255f, csd.upgradeColorG / 255f, csd.upgradeColorB / 255f, csd.upgradeColorA / 255f);
+        } else {
+            Gdx.gl.glClearColor(csd.colorR / 255f, csd.colorG / 255f, csd.colorB / 255f, csd.colorA / 255f);
+        }
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        if (upgraded) {
+            sb.setColor(csd.upgradeGlowR / 255f, csd.upgradeGlowG / 255f, csd.upgradeGlowB / 255f, csd.upgradeGlowA / 255f);
+        } else {
+            sb.setColor(csd.glowR / 255f, csd.glowG / 255f, csd.glowB / 255f, csd.glowA / 255f);
+        }
+        sb.draw(cardGlow, 0, h * singleScale, w * singleScale, -h * singleScale);
+        sb.setColor(Color.WHITE);
+        sb.draw(textureRegion, 0, 0, w * singleScale, (h - yCut) * singleScale);
+        sb.end();
+
+        Pixmap pixmap = ScreenUtils.getFrameBufferPixmap(0, 0, w, h);
+        PixmapIO.writePNG(new FileHandle("ttsgenerator/" + generatingFileName + "/" +
+                (!upgraded ? (c + 1 + csd.singleCardOffset) + "正面.png" : (c + 1 + csd.singleCardOffset) + "背面.png")), pixmap);
+
+        single.end();
     }
 }
